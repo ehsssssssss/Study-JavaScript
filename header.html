@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상단만들기(반응형)</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
+    <style>
+        a{
+            text-decoration: none;
+            color:black
+        }
+        #hd{ 
+            position: fixed;
+            left:0; right:0;
+            z-index: 10000;
+            background-color: white;
+            padding: 1rem;
+        }
+        #hd > div{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .down #hd{
+            transform: translateY(-100%);
+        }
+        #hd .util{
+            display: flex;
+            gap: 1rem;
+        }
+        #gnb{
+            display: flex;
+            gap: 2rem;
+        }
+        #hd nav{
+                display: flex;
+                gap: 2rem;
+        }
+        @media (min-width:991px) {
+            /* 데스크탑 */
+            #allMenu{
+                display: none;
+            }        
+        }
+        @media (max-width:991px) {
+            /* 모바일 */
+            #hd nav{
+               position: absolute;
+               top:100%;
+               left:100%;
+               width:100%;
+               background-color: yellow;
+               gap:5rem;
+               padding: 1rem;
+               flex-direction: column;
+               transition: 0.5s;
+            }
+            #allMenu:before{
+                content: "열기";
+            }
+            #allMenu.on:before{
+                content: "닫기";
+            }
+            #hd .on + nav{
+                left: 0;
+            }
+            #gnb{
+                flex-direction: column;
+            }
+            
+        }
+
+    </style>
+    <script>
+        window.addEventListener("DOMContentLoaded", ()=>{
+           const allbtn = document.querySelector("#allMenu");
+           allbtn.addEventListener('click', ()=>{
+                allbtn.classList.toggle(' on ');                
+                //css 처리해줘
+                // if(allbtn.classList.contains('on')){
+                //     allbtn.innerHTML ='닫기'
+                // }else{
+                //     allbtn.innerHTML ='열기'
+                // }
+           })
+        })
+    </script>
+</head>
+<body>
+    <header id="hd">
+        <div>
+            <h1><a href="">로고</a></h1>
+            <!-- 991이상일때 노출되지않게 : 반응형 991 
+                 가급적이면 flex을 안풀고 처리해보자
+             -->
+            <button id="allMenu" ></button>
+            <nav>
+                <ul id="gnb">
+                    <!-- 유지보수를 위한 json연동 -->
+                    <li><a href="">대메</a></li>
+                    <li><a href="">대메</a></li>
+                    <li><a href="">이메뉴길다</a></li>
+                    <li><a href="">대메</a></li>
+                </ul>
+                <ul class="util">
+                    <li><a href="">로그인</a></li>
+                    <li><a href="">장바구니</a></li>
+                    <li><a href="">마이페이지</a></li>
+                </ul>
+            </nav>
+            
+        </div>
+    </header>
+</body>
+</html>

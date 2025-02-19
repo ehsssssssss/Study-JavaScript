@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <style>
+       #qna li label{
+        display: inline-block;
+        font-family: bootstrap-icons !important;
+        font-style: normal;
+        font-weight: 400 !important;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        vertical-align: -.125em;
+        -webkit-font-smoothing: antialiased;
+       }
+       #qna li label:before{
+        content: "\f5d5"; 
+       }
+       #qna li input:checked + label:before{
+        content: "\f5d6"; 
+       }
+    </style>
+</head>
+<body>
+
+    
+   <section id="qna" class="container py-5">
+    <!-- 
+         UI를보고 테이블을 생성할 수 있는가?
+
+         기본필드 : 문의타입/문의상세분야/제목/내용/이메일(인증필요없음)/비밀번호
+         설계필드 : 문의한날짜/숫자(pk) 
+
+         ALTER TABLE `inquiries` CHANGE `id` 
+         `id` SMALLINT NOT NULL AUTO_INCREMENT;
+
+         CREATE TABLE inquiries (
+            id smallint AUTO_INCREMENT PRIMARY KEY,          -- 숫자 pk 필드
+            inquiry_type CHAR(1) not null,                       -- 문의타입 ( n | e )
+            inquiry_detail CHAR(1) not null,                     -- 문의상세분야 ( s | w | e )
+            title VARCHAR(100) not null,                         -- 제목
+            content TEXT  not null,                               -- 내용
+            email VARCHAR(255)  not null,                         -- 이메일 
+            password VARCHAR(255),                      -- 비밀번호 ( 모두 1234 처리해줘 )
+            inquiry_date DATETIME DEFAULT CURRENT_TIMESTAMP -- 문의한날짜, 기본값 현재시간 ( 오늘로 처리해줘 )
+        );
+         -->
+        <form action="" method="post" name="inquiries">
+              <ul class="d-flex flex-column gap-3 border-top border-bottom col-6 mx-auto">
+                    <li>
+                        <p><span>01</span><strong>무엇에 관해 문의하고 싶으신가요?</strong></p>
+                        <div class="d-flex align-items-center gap-3">
+                            <input type="radio" name="inquiry_type" value="n" id="qna0" class="d-none">
+                            <label for="qna0">일반문의</label>
+                            <input type="radio" name="inquiry_type" value="e" id="qna1" class="d-none"><label for="qna1">기타</label>
+                        </div>
+                    </li>
+                    <li>
+                        <p><span>02</span><strong>무엇에 관해 문의하고 싶으신가요?</strong></p>
+                        <div class="d-flex align-items-center gap-3">
+                            <input type="radio" name="inquiry_detail" id="qna2" value="s" class="d-none"><label for="qna2">학생복</label>
+                            <input type="radio" name="inquiry_detail" id="qna3" value="w" class="d-none"><label for="qna3">평상복</label>
+                            <input type="radio" name="inquiry_detail" id="qna4" value="e" class="d-none"><label for="qna4">기타</label>
+                        </div>
+                    </li>
+              </ul>
+        </form>
+   </section>
+    
+</body>
+</html>

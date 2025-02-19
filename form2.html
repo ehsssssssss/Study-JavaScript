@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type="radio"]{
+            display: none;
+        }
+        input[type="radio"]:checked + label{
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <ul>
+        <form  action="데이터를 넘길주소" name="qna" method="POST">
+            <li>
+                <input type="radio" id="qnatype0" name="qnatype" value="n">
+                <label for="qnatype0">공통문의</label>
+
+                <input type="radio" id="qnatype1" name="qnatype" value="e">
+                <label for="qnatype1">기타문의</label>
+            </li>
+            <li>
+                <label for="subject">제목</label>
+                <input type="text" name="subject" id="subject">
+            </li>
+
+            <input type="submit" value="보내기">
+        </form>
+    </ul>
+    
+</body>
+</html>
